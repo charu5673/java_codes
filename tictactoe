@@ -1,0 +1,122 @@
+import java.util.*;
+public class tictactoe
+{
+    static Scanner sc=new Scanner(System.in);
+    static int check(int a[][],int i,int j,int t)
+    {
+        int p=0;
+        if(a[i][1]==t&&a[i][0]==t&&a[i][2]==t)
+        return(1);
+        else if(a[0][j]==t&&a[1][j]==t&&a[2][j]==t)
+        return(1);
+        else if(i==j)
+        {
+            if(a[0][0]==t&&a[1][1]==t&&a[2][2]==t)
+            return(1);
+            if(a[0][2]==t&&a[1][1]==t&&a[2][0]==t)
+            return(1);
+        }
+        else if((i==0&&j==2)||(i==2&&j==0))
+        {
+            if(a[0][2]==t&&a[1][1]==t&&a[2][0]==t)
+            return(1);
+        }
+        return(p);
+    }
+    static char find(int a)
+    {
+        if(a==-1)
+        return(' ');
+        else if(a==0)
+        return('o');
+        else
+        return('x');
+    }
+    static void print(int a[][])
+    {
+        int i=0,j=0;
+        System.out.print("\n ");
+        System.out.print(find(a[i][j++]));
+        System.out.print(" | ");
+        System.out.print(find(a[i][j++]));
+        System.out.print(" | ");
+        System.out.println(find(a[i++][j]));
+        System.out.println("___________");
+        j=0;
+        System.out.print(" ");
+        System.out.print(find(a[i][j++]));
+        System.out.print(" | ");
+        System.out.print(find(a[i][j++]));
+        System.out.print(" | ");
+        System.out.println(find(a[i++][j]));
+        System.out.println("___________");
+        j=0;
+        System.out.print(" ");
+        System.out.print(find(a[i][j++]));
+        System.out.print(" | ");
+        System.out.print(find(a[i][j++]));
+        System.out.print(" | ");
+        System.out.println(find(a[i++][j]));
+    }
+    static int startgame(int x,int o)
+    {
+        int c,t=0,k=0,ch=0,i=0,j=0;
+        int a[][]={{-1,-1,-1},{-1,-1,-1},{-1,-1,-1}};
+        System.out.println("\nX = "+x+"\nO = "+o+"\n");
+        System.out.println(" 11 | 12 | 13 \n______________\n 21 | 22 | 23 \n______________\n 31 | 32 | 33 ");
+        while(1==1)
+        {
+        System.out.println("\nEnter choice: ");
+        c=sc.nextInt();
+        i=(c/10)-1;
+        j=(c%10)-1;
+        if(i<0||i>2||j<0||j>2)
+        {
+            System.out.println("\nInvalid Choice.");
+            print(a);
+        }
+        else if(a[i][j]!=-1)
+        {
+            System.out.println("\nInvalid Choice.");
+            print(a);
+        }
+        else
+        {
+            a[i][j]=t;
+            print(a);
+            k++;
+            if(k>=3)
+            ch=check(a,i,j,t);
+            if(ch==1)
+            {
+                x+=(t==0)?0:1;
+                o+=(t==1)?0:1;
+            System.out.println("\n"+((t==0)?"O":"X")+" wins!\n\nX = "+x+"\nO = "+o);
+            return(t);
+            }
+            t=(t==0)?1:0;
+        }
+        if(k==9)
+        {
+            System.out.println("\nTie!\n\nX = "+x+"\nO = "+o);
+            return(-1);
+        }
+    }
+    }
+    public static void main(String[] args)
+    {
+        int c=0,x=0,o=0,s=0;
+        while(1==1)
+        {
+        System.out.println("\nStart Game? ");
+        c=sc.nextInt();
+        if(c==0)
+        break;
+        s=startgame(x,o);
+        if(s==1)
+        x++;
+        else if(s==0)
+        o++;
+    }
+    }
+}
