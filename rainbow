@@ -1,0 +1,130 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+import java.awt.Color;
+public class mouse_m extends Frame implements MouseMotionListener
+{
+int r=255,gr=0,b=0;
+int cc=2,sn=1;
+mouse_m()
+{
+setLayout(null);
+setSize(400,400);
+setVisible(true);
+addMouseMotionListener(this);
+}
+public static void main(String[] args)
+{
+mouse_m ob=new mouse_m();
+}
+public void mouseMoved(MouseEvent e)
+{
+Color c=new Color(r,gr,b);
+Graphics g=getGraphics();
+g.setColor(c);
+g.drawString("CM",e.getX(),e.getY());
+if(cc==1)
+{
+    if(sn==1)
+    {
+        r++;
+    }
+    else
+    {
+        r--;
+    }
+    if(r==255||r==0)
+    {
+        cc=3;
+        sn=(sn==1)?2:1;
+    }
+    }
+else if(cc==2)
+{
+    if(sn==1)
+    {
+        gr++;
+    }
+    else
+    {
+        gr--;
+    }
+    if(gr==255||gr==0)
+    {
+        cc=1;
+        sn=(sn==1)?2:1;
+    }
+}
+else
+{
+    if(sn==1)
+    {
+        b++;
+    }
+    else
+    {
+        b--;
+    }
+    if(b==255||b==0)
+    {
+        cc=2;
+        sn=(sn==1)?2:1;
+    }
+}
+}
+public void mouseDragged(MouseEvent e)
+{
+Color c=new Color(r,gr,b);
+Graphics g=getGraphics();
+g.setColor(c);
+g.drawString("CM",e.getX(),e.getY());
+if(cc==1)
+{
+    if(sn==1)
+    {
+        r++;
+    }
+    else
+    {
+        r--;
+    }
+    if(r==255||r==0)
+    {
+        cc=3;
+        sn=(sn==1)?2:1;
+    }
+}
+else if(cc==2)
+{
+    if(sn==1)
+    {
+        gr++;
+    }
+    else
+    {
+        gr--;
+    }
+    if(gr==255||gr==0)
+    {
+        cc=1;
+        sn=(sn==1)?2:1;
+    }
+}
+else
+{
+    if(sn==1)
+    {
+        b++;
+    }
+    else
+    {
+        b--;
+    }
+    if(b==255||b==0)
+    {
+        cc=2;
+        sn=(sn==1)?2:1;
+    }
+}
+}
+}
